@@ -2,8 +2,8 @@ require 'bcrypt'
 
 class User < ActiveRecord::Base
   # Remember to create a migration!
-  has_many :itineraries, through: :invites
-  has_many :invites
+  has_many :restaurants, through: :favorites
+  has_many :favorites
 
   validates :email, uniqueness: true
   validates :email, :password , presence: true

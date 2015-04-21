@@ -1,0 +1,29 @@
+<h1>Welcome</h1>
+<div class="library">
+<h3>Customized Roulette Wheel</h3>
+<% if @favorites %>
+  <% @favorites.each do |favorite| %>
+    <p><%= favorite.name %></p>
+  <% end %>
+<% end %>
+</div>
+
+<button class="favorite" type="button">Restaurant roulette with your favorites</button>
+
+<form action="/searches" method="GET">
+  <input type="submit" value="Click here to play restaurant roulette">
+</form>
+
+
+
+<% if @result %>
+<div class="result">
+  <p class="name"><%= @result.name %></p>
+  <a class="yelp_url" href="<%= @result.mobile_url %>">Yelp Link</a>
+  <p class="review_count"><%= @result.review_count %></p>
+  <p class="rating"><%= @result.rating %></p>
+  <p class="address"><%= @result.location.display_address %></p>
+  <p class="phone"><%= @result.phone %>
+  <p class="category"><%= @result.categories %></p>
+</div>
+<% end %>

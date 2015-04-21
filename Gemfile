@@ -28,3 +28,8 @@ group :test, :development do
 end
 
 gem 'bcrypt'
+
+gem 'yelp', require: 'yelp'
+
+gem 'dotenv'
+

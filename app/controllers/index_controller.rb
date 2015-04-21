@@ -1,10 +1,11 @@
-get '/' do 
+get '/' do
+  @user = User.new 
   erb :"index/home"
 end
 
 get '/register' do
   @user = User.new
-  erb :"index/register"
+  erb :"index/home"
 end
 
 post '/register' do
@@ -15,11 +16,11 @@ post '/register' do
     )
 
   if @user.save
-    current_user
-    redirect '/search/new'
+    session[:user_id] = @user.id
+    redirect '/profile'
   else
     @errors = @user.errors.full_messages
-    erb :"index/register"
+    erb :"index/home"
   end
 end
 
@@ -32,13 +33,12 @@ post '/login' do
 
   @user = User.where(email: params[:email]).first
 
-  @user.password == params[:password]
   if @user && @user.password == params[:password]
-    current_user
-    redirect '/search/new'
+    session[:user_id] = @user.id
+    redirect '/profile'
   else
-    @errors = @user.errors.full_messages
-    erb :"index/login"
+    @error = "Invalid Email or Password"
+    erb :"index/home"
   end
 end
 

@@ -19,14 +19,18 @@
 
 
 <div id="result">Restaurant Result</div> 
+
 <% if @result %>
-<div class="result">
+<div class="result well">
   <a class="yelp_url name" href="<%= @result.mobile_url %>"><%= @result.name %></a>
   <p class="review_count"><%= @result.review_count %></p>
   <p class="rating"><%= @result.rating %></p>
   <p class="address"><%= @result.location.display_address %></p>
   <p class="phone"><%= @result.phone %>
   <p class="category"><%= @result.categories %></p>
+  <button type="button" class="btn btn-default" aria-label="Left Align">
+    <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+  </button>
 </div>
 <% end %>
 

@@ -48,7 +48,6 @@ post '/searches/new' do
   
   @results = Yelp.client.search(location, search_params)
   @result = @results.businesses[(Random.rand(1...20))]
-  
   @favorites = User.find(session[:user_id]).restaurants
 
   erb :"search_view/profile"

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $(document).on('click', '.result', function(event){
+  $(document).on('click', '.glyphicon-check', function(event){
     event.preventDefault();
 
     var ajaxRequest = $.ajax({

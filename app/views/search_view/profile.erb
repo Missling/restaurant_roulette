@@ -5,13 +5,15 @@
       <a href="<%= favorite.yelp_url%>" class="list-group-item" target="_blank"><%= favorite.name %></a>
     <% end %>
   <% end %>
+
+  <button type="button" class="btn btn-primary btn-block favorite" <span class="glyphicon glyphicon-check"></span>Play Restaurant Roulette with your Favorites</button>
 </div>
 
-<button class="favorite" type="button">Restaurant roulette with your favorites</button>
-
-<form action="/searches" method="GET">
-  <input type="submit" value="Click here to play restaurant roulette">
-</form>
+<div class="roulette">
+  <form action="/searches" method="GET">
+    <input type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#roulette" value="Click here to play restaurant roulette">
+  </form>
+</div>
 
 
 <div id="result">Restaurant Result</div> 
@@ -25,3 +27,17 @@
   <p class="category"><%= @result.categories %></p>
 </div>
 <% end %>
+
+<div class="modal fade" id="roulette" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Let's Play</h4>
+      </div>
+      <div class="modal-body">
+        <%= erb :"search_view/searches" %>
+      </div>
+    </div>
+  </div>
+</div>

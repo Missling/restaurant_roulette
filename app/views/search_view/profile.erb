@@ -1,11 +1,10 @@
-<h1>Welcome</h1>
-<div class="library">
-<h3>Customized Roulette Wheel</h3>
-<% if @favorites %>
-  <% @favorites.each do |favorite| %>
-    <p><%= favorite.name %></p>
+<div class="library list-group">
+  <h1 class="list-group-item active"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Favorites</h1>
+  <% if @favorites %>
+    <% @favorites.each do |favorite| %>
+      <a href="<%= favorite.yelp_url%>" class="list-group-item" target="_blank"><%= favorite.name %></a>
+    <% end %>
   <% end %>
-<% end %>
 </div>
 
 <button class="favorite" type="button">Restaurant roulette with your favorites</button>
@@ -15,11 +14,10 @@
 </form>
 
 
-
+<div id="result">Restaurant Result</div> 
 <% if @result %>
 <div class="result">
-  <p class="name"><%= @result.name %></p>
-  <a class="yelp_url" href="<%= @result.mobile_url %>">Yelp Link</a>
+  <a class="yelp_url name" href="<%= @result.mobile_url %>"><%= @result.name %></a>
   <p class="review_count"><%= @result.review_count %></p>
   <p class="rating"><%= @result.rating %></p>
   <p class="address"><%= @result.location.display_address %></p>

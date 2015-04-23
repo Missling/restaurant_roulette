@@ -5,10 +5,10 @@ $(document).ready(function() {
     var ajaxRequest = $.ajax({
       url: '/create_favorite',
       type: "POST",
-      content_type: 'json',
+      data_type: 'json',
       data: {
         name: $('.name').text(),
-        yelp_url: $('.yelp_url').text(),
+        yelp_url: $('.yelp_url').attr('href'),
         review_count: $('.review_count').text(),
         rating: $('.rating').text(),
         address: $('.address').text(),
@@ -19,7 +19,7 @@ $(document).ready(function() {
     
     ajaxRequest.done(function(response){
       $('.library').append(
-          "<p>" + response.name + "</p>"
+          '<a class="list-group-item" target="_blank" href="' + response.yelp_url + '">' + response.name + '</a>'
         );
     }); 
   })
@@ -30,13 +30,14 @@ $(document).ready(function() {
     var ajaxRequest = $.ajax({
       url: '/play_favorite',
       type: "GET",
-      content_type: 'json'
+      data_type: 'json'
     });
 
     ajaxRequest.done(function(response){
-      $('.result').html(response.name)
+      debugger
+      $('#result').html(response.name)
     });
-  });  
+  });
 });
 
 //data: $('.form').serialize() =if there is a form that get the info, but we are passing in the info ourselves

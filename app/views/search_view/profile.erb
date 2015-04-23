@@ -1,9 +1,11 @@
-<div class="library list-group">
+<div class="list-group">
   <h1 class="list-group-item active"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Favorites</h1>
+  <div class="library">
   <% if @favorites %>
     <% @favorites.each do |favorite| %>
       <a href="<%= favorite.yelp_url%>" class="list-group-item" target="_blank"><%= favorite.name %></a>
     <% end %>
+  </div>
   <% end %>
 
   <button type="button" class="btn btn-primary btn-block favorite" <span class="glyphicon glyphicon-check"></span>Play Restaurant Roulette with your Favorites</button>

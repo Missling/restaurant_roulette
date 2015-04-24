@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $(document).on('click', '.glyphicon-check', function(event){
+  $(document).on('click', '.add_favorite', function(event){
     event.preventDefault();
 
     var ajaxRequest = $.ajax({
@@ -34,8 +34,7 @@ $(document).ready(function() {
     });
 
     ajaxRequest.done(function(response){
-      debugger
-      $('#result').html(response.name)
+      $('#result > h3').html(response.name)
     });
   });
 });

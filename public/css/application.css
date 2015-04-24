@@ -1,9 +1,3 @@
-.result {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .login {
   display: none;
 }
@@ -23,16 +17,15 @@
   margin-bottom: 0px !important;
 }
 
-.list-group {
-  width: 25%;
-  margin-left: 5%;
-  margin-top: 5%;
-} 
 
-.list-group-item {
+.list-group-item, .result {
   text-align: center;
 }
 
-.well {
-  width: 50%;
+.play, .result {
+  margin-top: 20px;
+}
+
+#result {
+  text-align: center;
 }

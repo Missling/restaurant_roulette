@@ -1,49 +1,64 @@
-<div class="list-group">
-  <h1 class="list-group-item active"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Favorites</h1>
-  <div class="library">
-  <% if @favorites %>
-    <% @favorites.each do |favorite| %>
-      <a href="<%= favorite.yelp_url%>" class="list-group-item" target="_blank"><%= favorite.name %></a>
-    <% end %>
-  </div>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="list-group">
+        <h1 class="list-group-item active"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Favorites</h1>
+        <div class="library">
+        <% if @favorites %>
+          <% @favorites.each do |favorite| %>
+            <a href="<%= favorite.yelp_url%>" class="list-group-item" target="_blank"><%= favorite.name %></a>
+          <% end %>
+        </div>
+        <% end %>
 
-  <button type="button" class="btn btn-primary btn-block favorite" <span class="glyphicon glyphicon-check"></span>Play Restaurant Roulette with your Favorites</button>
-</div>
-
-<div class="roulette">
-  <form action="/searches" method="GET">
-    <input type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#roulette" value="Click here to play restaurant roulette">
-  </form>
-</div>
-
-
-<div id="result">Restaurant Result</div> 
-
-<% if @result %>
-<div class="result well">
-  <a class="yelp_url name" href="<%= @result.mobile_url %>"><%= @result.name %></a>
-  <p class="review_count"><%= @result.review_count %></p>
-  <p class="rating"><%= @result.rating %></p>
-  <p class="address"><%= @result.location.display_address %></p>
-  <p class="phone"><%= @result.phone %>
-  <p class="category"><%= @result.categories %></p>
-  <button type="button" class="btn btn-default" aria-label="Left Align">
-    <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
-  </button>
-</div>
-<% end %>
-
-<div class="modal fade" id="roulette" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Let's Play</h4>
+        <button type="button" class="btn btn-primary btn-block favorite" <span class="glyphicon glyphicon-check"></span>Play Restaurant Roulette with your Favorites</button>
       </div>
-      <div class="modal-body">
-        <%= erb :"search_view/searches" %>
+
+    </div>
+
+    <div class="col-md-8">
+      <div class="roulette">
+        <form action="/searches" method="GET">
+          <input type="button" class="btn btn-primary btn-lg play" data-toggle="modal" data-target="#roulette" value="Play">
+        </form>
       </div>
+
+      <div id="result">
+        <h3></h3>
+      </div> 
+
+      <div class="modal fade" id="roulette" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Let's Play</h4>
+            </div>
+            <div class="modal-body">
+              <%= erb :"search_view/searches" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <% if @result %>
+      <div class="result well">
+        <h3><a class="yelp_url name" href="<%= @result.mobile_url %>"><%= @result.name %></a></h3>
+        <p class="review_count">Review Count: <%= @result.review_count %></p>
+        <p class="rating">Rating: <%= @result.rating %></p>
+
+        <%
+          address = @result.location.display_address
+          address.delete_at(1)
+        %>
+        <p class="address"><%= address.join(", ") %></p>
+        <p class="phone">Telephone: <%= @result.phone %>
+        <p class="category">Categories: <%= @result.categories.map(&:first).join(", ") %></p>
+        <button type="button" class="btn btn-default add_favorite" aria-label="Left Align">
+          <span class="glyphicon glyphicon-check" aria-hidden="true"></span> Add to Favorites
+        </button>
+      </div>
+      <% end %>
     </div>
   </div>
 </div>

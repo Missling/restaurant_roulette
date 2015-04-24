@@ -1,14 +1,17 @@
 
 <form action="/searches/new" method="POST">
-  <p>Location: <input type="text" name="location" required></p>
-  <p>Price Range: <select name="price">
-                    <option value="1">$</option>
-                    <option value="2">$$</option>
-                    <option value="3">$$$</option>
-                    <option value="4">$$$$</option> 
-                  </select></p>
-  <p>Category: <input type="text" name="category_filter"></p>
-  <input type="submit" value="Submit">
+  <div class="input-group">
+    <span class="input-group-addon" id="basic-addon1">Location</span>
+    <input type="text" name="location" required class="form-control">
+  </div>
+  <br>
+  <div class="input-group">
+    <span class="input-group-addon" id="basic-addon1">Category</span>
+    <input type="text" name="category_filter" class="form-control">
+  </div>
+  <br>
+  <input type="submit" value="Submit" class="btn btn-primary">
+  
 </form>
 
 

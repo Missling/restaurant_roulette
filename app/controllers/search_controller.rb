@@ -7,6 +7,7 @@ get '/profile' do
 end
 
 post '/create_favorite' do
+
   restaurant = Restaurant.create(
     name: params[:name],
     yelp_url: params[:yelp_url],
@@ -41,18 +42,24 @@ post '/searches/new' do
   search_params = { term: 'restaurant' }
 
   if params.has_key?("category_filter") 
-    search_params["category_filter"] = params[:category_filter]
+    search_params["category_filter"] = params[:category_filter].downcase
   end
+
+  p search_params
 
   location = params[:location]
   
   @results = Yelp.client.search(location, search_params)
+
   @result = @results.businesses[(Random.rand(1...20))]
   @favorites = User.find(session[:user_id]).restaurants
 
   erb :"search_view/profile"
 
 end
+
+
+
 
 
 

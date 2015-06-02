@@ -1,3 +1,10 @@
+<% if session[:user_id] %>
+  <form action="/logout" method="get">
+    <input id="logout" class="btn btn-default" type="submit" value="Logout">
+  </form>
+<% end %>
+
+
 <div class="container">
   <div class="row">
     <div class="col-md-4">
